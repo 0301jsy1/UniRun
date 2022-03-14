@@ -8,7 +8,7 @@ public class ScrollingObject : MonoBehaviour
     public float speed = 10f; //이동속도      
     void Start()
     {
-          
+        Debug.Log("Chosy");
     }
 
     void Update()
