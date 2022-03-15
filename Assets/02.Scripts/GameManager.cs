@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         {
             //인스턴스에 이미 다른 GameManager 오브젝트가 존재한다는 의미....
             //싱글턴 오브젝트는 하나만 존재해야 하므로 자신의 게임 오브젝트를 파괴
-            Debug.Log("씬에 두 개 이상으 ㅣ게임 매니저가 존재합니다!");
+            Debug.Log("씬에 두 개 이상의 게임 매니저가 존재합니다!");
             Destroy(gameObject);
         }
     }
