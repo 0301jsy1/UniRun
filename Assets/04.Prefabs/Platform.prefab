@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6075570741369084448}
   m_Layer: 0
   m_Name: Obstacle (1)
-  m_TagString: Dead
+  m_TagString: Spark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 4951468865237685534}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Dead
+  m_TagString: Spark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 6916142940901419519}
   m_Layer: 0
   m_Name: Obstacle (2)
-  m_TagString: Dead
+  m_TagString: Spark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
     public GameObject gameoverUI;//게임오버시활성화할 UI 오브젝트
     private int score = 0;//게임 점수
 
+    public GameObject menuPanel;
+
+    public int hpCount = 3; //사용자 생명력
+    public Text hpText; //사용자에게 보여질 Text
+
     //게임 시작과 동시에 싱글턴을 구성
     private void Awake()
     {
@@ -30,7 +35,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
- 
+
+    private void Start()
+    {
+        //사용자에게 보여질 생명력을 실제 생명력으로 등록
+        hpText.text = hpCount.ToString(); //ToString 문자로 형변환
+    }
+
     // 게임 오버 상태에서 게임을 재시작할 수 있게 하는 처리
     void Update()
     {
@@ -67,6 +78,66 @@ public class GameManager : MonoBehaviour
         //현재 상태를 게임오버 상태로 변경
         isGameover = true;
         gameoverUI.SetActive(true);//게임오버시 활성화할 UI 오브젝트
+    }
+    /*
+    public void OnMenu()
+    {
+        menuPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
 
-}
+    public void OffMenu()
+    {
+        menuPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);//현재 활성화된 씬의 이름을 가져와라. ->SoftCoding
+        Time.timeScale = 1f;
+    }
+    */
+
+    public void MenuPanelControl(bool isActive)
+    {
+        menuPanel.SetActive(isActive);
+    }
+    
+    public void UIControl(string type)
+    {
+        switch(type)
+        {
+            case "menuon":
+                menuPanel.SetActive(true);
+                Time.timeScale = 0f;
+                break;
+            case "menuoff":
+                menuPanel.SetActive(false);
+                Time.timeScale = 1f;
+                PlayerController.playerRigidbody.velocity = Vector2.zero;//속도를 제로(0,0)로 변경
+                break;
+            case "exit":
+                Application.Quit();
+                break;
+            case "restart":
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);//현재 활성화된 씬의 이름을 가져와라. ->SoftCoding
+                Time.timeScale = 1f;
+                break;
+        }
+    }
+
+    public bool Crash()
+    {
+        //hpCount--;
+        //hpText.text = hpCount.ToString();
+        hpText.text = "" + --hpCount; //"" + --hpCount : 자동 형변환
+        if (hpCount <= 0) return true;//조건문 아래있으면 반환되지 않음
+        return false;
+    }
 }

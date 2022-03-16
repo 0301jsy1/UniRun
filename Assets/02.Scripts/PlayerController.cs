@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     //플레이어가 죽었냐 살았냐 : 사망 상태
     private bool isDead = false;
     // 사용할 리지드바디 컴포넌트
-    private Rigidbody2D playerRigidbody;
+    public static Rigidbody2D playerRigidbody;
     // 사용할 오디오 소스 콤포넌트
     private AudioSource playerAudio;
     //사용할 애니메이터 컴포넌트
@@ -110,6 +110,10 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Dead" && !isDead)
         {
             Die();
+        }
+        else if(collision.tag == "Spark" && !isDead)
+        {
+            if (GameManager.instance.Crash() == true) Die();
         }
     }
     /*
