@@ -107,13 +107,30 @@ public class PlayerController : MonoBehaviour
     {
         //트리거 콜라이더를 가진 장애물과의 충돌 감지
         //충돌한 상대방의 태그가 Dead이면서 아직 사망하지 않았다면
-        if (collision.tag == "Dead" && !isDead)
+       /* if (collision.tag == "Dead" && !isDead)
         {
             Die();
         }
         else if(collision.tag == "Spark" && !isDead)
         {
             if (GameManager.instance.Crash() == true) Die();
+        }*/
+
+        if (isDead) return;
+        switch(collision.tag)
+        {
+            case "Dead":
+                Die();
+                break;
+            case "Spark":
+                if (GameManager.instance.Crash() == true) Die();
+                break;
+            case "Coin":
+                GameManager.instance.AddScore(100);
+                collision.gameObject.SetActive(false);
+                break;
+            default:
+                break;
         }
     }
     /*
